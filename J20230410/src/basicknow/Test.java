@@ -21,9 +21,9 @@ public class Test {
         //空常量：null
 
         //变量
-        int a = 10;//数据类型 变量名 = 初始值
-        a = 100;
-        System.out.println(a);//100
+        //int a = 10;//数据类型 变量名 = 初始值
+        //a = 100;
+        //System.out.println(a);//100
 
         //Java中的局部变量能不能不赋值就编译运行？
         //int num;
@@ -34,14 +34,26 @@ public class Test {
         //System.out.println(max);
 
         //若是使用相加的方式后，加的结果超过了最大值，编译器是否会报错？
-        int x = 2000000111;
-        int y = 1110000000;
-        int m = x + y;
-        System.out.println(m);//不会报错
+//        int x = 2000000111;
+//        int y = 1110000000;
+//        int m = x + y;
+//        System.out.println(m);//不会报错
 
         //获取整数类型的最大值和最小值
         System.out.println(Integer.MAX_VALUE);//最大值
         System.out.println(Integer.MIN_VALUE);//最小值
+
+//        short a =128;
+//        byte b =(byte) a;
+//        System.out.println(a + " " + b);
+
+        double x=2.0;
+        int y=4;
+        x/=++y;
+        System.out.println(x);
+
+        int a = 10;
+        //System.out.println(!a);
 
     }
 }
