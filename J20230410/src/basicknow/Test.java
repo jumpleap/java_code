@@ -54,6 +54,27 @@ public class Test {
 
         int a = 10;
         //System.out.println(!a);
+        int Number1=0, Number2=0;
+        int[] Array1 = {2,3,4,5,6,7,8,9,10,11};
+
+        for (int Ctr : Array1) {
+            if (Ctr % 2 == 1) {
+                Number1++;
+            } else {
+                Number2++;
+                System.out.print(Ctr);
+            }
+        }
+
+
+        int i=10,j=20;
+
+        while(i++<--j){
+
+        }
+
+        System.out.println(i+" "+j);
+
 
     }
 }
