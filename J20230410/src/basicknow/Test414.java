@@ -21,6 +21,16 @@ public class Test414 {
         System.out.println(a > 100 && b == 2); //false
         System.out.println(a > 100 && b > 100); //false
 
+        int num = 100;
+        while (num <= 200) {
+            if ((num % 3 == 0) && (num % 4 == 0)) {
+                System.out.println(num);
+                num++;
+                continue;
+            }
+            num++;
+        }
+
 
 //        int a = 10;
 //        int b = 20;
