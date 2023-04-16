@@ -4,6 +4,26 @@ import java.util.Scanner;
 
 public class Demo {
     public static void main(String[] args) {
+        //斐波那契数
+        Scanner scanner = new Scanner(System.in);
+        int num = 0;
+        num = scanner.nextInt();
+
+        int n1 = 1;
+        int n2 = 1;
+        int sum = 1;
+        //进行迭代
+        while (num > 2) {
+           sum =  n1 + n2;
+           n1 = n2;
+           n2 = sum;
+
+           num--;
+        }
+        System.out.println(sum);
+    }
+
+    public static void main5(String[] args) {
         //给定两个数，求这两个数的最大公约数
 
     }
@@ -28,7 +48,7 @@ public class Demo {
                 break;
             } else {
                 //最后一次不提示你还有没有机会了
-                if(i == 2) {
+                if (i == 2) {
                     flag = 1;
                     break;
                 }
