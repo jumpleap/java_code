@@ -4,32 +4,6 @@ import java.util.Scanner;
 
 public class Demo {
     public static void main(String[] args) {
-        //斐波那契数
-        Scanner scanner = new Scanner(System.in);
-        int num = 0;
-        num = scanner.nextInt();
-
-        int n1 = 1;
-        int n2 = 1;
-        int sum = 1;
-        //进行迭代
-        while (num > 2) {
-           sum =  n1 + n2;
-           n1 = n2;
-           n2 = sum;
-
-           num--;
-        }
-        System.out.println(sum);
-    }
-
-    public static void main5(String[] args) {
-        //给定两个数，求这两个数的最大公约数
-
-    }
-
-
-    public static void main4(String[] args) {
         //编写代码模拟三次密码输入的场景。 最多能输入三次密码，密码正确，提示“登录成功”,
         // 密码错误， 可以重新输 入，最多输入三次。三次均错，则提示退出程序
         Scanner scanner = new Scanner(System.in);
@@ -74,7 +48,6 @@ public class Demo {
         }
     }
 
-
     public static void main2(String[] args) {
         //计算1/1-1/2+1/3-1/4+1/5 …… + 1/99 - 1/100 的值
         double sum = 0;
@@ -86,8 +59,7 @@ public class Demo {
         System.out.println(sum);
     }
 
-
-    public static void main1(String[] args) {
+    public static void main6(String[] args) {
         //编写程序数一下 1到 100 的所有整数中出现多少个数字9
         int num = 1;
         int count = 0;
@@ -99,5 +71,25 @@ public class Demo {
             num++;
         }
         System.out.println("1-100中9的个数为:" + count);
+    }
+
+    public static void main1(String[] args) {
+        //斐波那契数
+        Scanner scanner = new Scanner(System.in);
+        int num = 0;
+        num = scanner.nextInt();
+
+        int n1 = 1;
+        int n2 = 1;
+        int sum = 1;
+        //进行迭代
+        while (num > 2) {
+           sum =  n1 + n2;
+           n1 = n2;
+           n2 = sum;
+
+           num--;
+        }
+        System.out.println(sum);
     }
 }
