@@ -9,6 +9,7 @@ import java.util.List;
 public class CollectionMethod {
     /**
      * 遍历集合的两种方式
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -23,7 +24,7 @@ public class CollectionMethod {
 
         //获取迭代器
         Iterator iterator = collection.iterator();
-        while(iterator.hasNext()) { //判断是否还有数据
+        while (iterator.hasNext()) { //判断是否还有数据
             Object obj = iterator.next();//获取当前数据
             System.out.println(obj);//输出
         }
@@ -35,13 +36,13 @@ public class CollectionMethod {
         iterator = collection.iterator();//重置迭代器
 
         //第二次进行遍历
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             Object obj = iterator.next();
             System.out.println(obj);
         }
 
         //遍历方式2：for each循环
-        for (Object obj: collection) {
+        for (Object obj : collection) {
             System.out.println(obj);
         }
     }
@@ -49,6 +50,7 @@ public class CollectionMethod {
 
     /**
      * 了解并熟悉Collection接口中的常用方法
+     *
      * @param args
      */
     public static void main1(String[] args) {
