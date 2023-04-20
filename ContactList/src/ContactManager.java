@@ -257,27 +257,27 @@ public class ContactManager {
      * 按名字、住址、生日查找
      */
     public int search(String thing, int flag) {
-        if (flag == 1) {
+        if (flag == 1) {//flag为1则按名字查找
             for (int i = 0; i < arrayList.size(); i++) {
                 if (arrayList.get(i).getName().equals(thing)) {
-                    return i;
+                    return i;//找到了
                 }
             }
-            return -1;
-        } else if (flag == 2) {
+            return -1;//没有找到
+        } else if (flag == 2) {//flag为2则按住址查找
             for (int i = 0; i < arrayList.size(); i++) {
                 if (arrayList.get(i).getAddress().equals(thing)) {
-                    return i;
+                    return i;//找到了
                 }
             }
-            return -1;
-        } else {
+            return -1;//没有找到
+        } else {//flag为其他则按生日查找
             for (int i = 0; i < arrayList.size(); i++) {
                 if (arrayList.get(i).getBirthday().equals(thing)) {
-                    return i;
+                    return i;//找到了
                 }
             }
-            return -1;
+            return -1;//没有找到
         }
     }
 
