@@ -22,7 +22,7 @@ public class ContactManager {
             System.out.print("请输入你的选择:");
             choice = scanner.nextInt();
 
-            switch(choice) {
+            switch (choice) {
                 case 1:
                     //显示所有联系人信息
                     showContact();
@@ -61,7 +61,7 @@ public class ContactManager {
                     break;
                 case 0:
                     System.out.println("退出通讯录~");
-                    scanner.close();
+                    scanner.close();//关闭输入资源
                     break;
                 default:
                     System.out.println("你输入的选择有误，请重新选择~");
@@ -73,8 +73,8 @@ public class ContactManager {
      * 初始化通讯录
      */
     public void initContact() {
-        arrayList.add(new Contact("小王",18,"123456","北京","8月12日","9613.qq.com"));
-        arrayList.add(new Contact("小明",18,"367545","上海","6月13日","7896686.qq.com"));
+        arrayList.add(new Contact("小王", 18, "123456", "北京", "8月12日", "9613.qq.com"));
+        arrayList.add(new Contact("小明", 18, "367545", "上海", "6月13日", "7896686.qq.com"));
     }
 
 
@@ -93,6 +93,7 @@ public class ContactManager {
         System.out.println("*********  8.给联系人发信息   *********");
         System.out.println("*********  9.联系人生日提醒   *********");
         System.out.println("*********   0.退出通讯录     *********");
+        System.out.println("************************************");
     }
 
     /**
@@ -118,7 +119,7 @@ public class ContactManager {
         String email = scanner.next();
 
         //使用contact类接收这些信息
-        Contact contact = new Contact(name,age,tele,address,birthday,email);
+        Contact contact = new Contact(name, age, tele, address, birthday, email);
         arrayList.add(contact);//添加到集合中
         System.out.println("添加成功");
         return true;
@@ -131,7 +132,7 @@ public class ContactManager {
         System.out.println("请输入你想要删除的联系人姓名：");
         String name = scanner.next();
         int index = searchName(name);
-        if(index == -1) {
+        if (index == -1) {
             System.out.println("没有此联系人~");
             return false;
         }
@@ -143,7 +144,7 @@ public class ContactManager {
     public int searchName(String name) {
         //获取到和name名字相同的下标
         for (int i = 0; i < arrayList.size(); i++) {
-            if(arrayList.get(i).getName().equals(name)) {
+            if (arrayList.get(i).getName().equals(name)) {
                 return i;
             }
         }
@@ -158,7 +159,7 @@ public class ContactManager {
         String name = scanner.next();
 
         int index = searchName(name);
-        if(index == -1) {
+        if (index == -1) {
             System.out.println("没有此联系人~");
             return false;
         }
@@ -192,7 +193,107 @@ public class ContactManager {
      * 查找联系人：名字查找、年龄查找、住址查找、生日查找
      */
     public void searchMenu() {
+        int opt = 0;
+        do {
+            System.out.println("*******************************");
+            System.out.println("******     1.按名字查找    ******");
+            System.out.println("******     2.按年龄查找    ******");
+            System.out.println("******     3.按住址查找    ******");
+            System.out.println("******     4.按生日查找    ******");
+            System.out.println("******     0.退出查找     ******");
+            System.out.println("*******************************");
+
+            System.out.println("请输入你想要按照那种规则进行查找：");
+            opt = scanner.nextInt();
+            int index = -1;//下标
+            int flag = 0;//标记类型
+
+            switch (opt) {
+                case 1:
+                    //按名字查找
+                    System.out.println("请输入要查找的名字：");
+                    String name = scanner.next();
+                    flag = 1;
+                    index = search(name, flag);
+                    break;
+                case 2:
+                    //按年龄查找
+                    System.out.println("请输入要查找的年龄：");
+                    int age = scanner.nextInt();
+                    index = search(age);
+                    break;
+                case 3:
+                    //按住址查找
+                    System.out.println("请输入要查找的住址：");
+                    String address = scanner.next();
+                    flag = 2;
+                    index = search(address, flag);
+                    break;
+                case 4:
+                    //按生日查找
+                    System.out.println("请输入要查找的生日：");
+                    String birthday = scanner.next();
+                    flag = 3;
+                    index = search(birthday, flag);
+                    break;
+                case 0:
+                    System.out.println("退出查找~");
+                    return;
+                default:
+                    ;
+            }
+
+            //判断查找是否成功
+            if(index == -1) {
+                System.out.println("无此人信息,请重新查找~");
+            } else {
+                System.out.println(arrayList.get(index));
+            }
+
+        } while (opt != 0);
     }
+
+    /**
+     * 按名字、住址、生日查找
+     */
+    public int search(String thing, int flag) {
+        if (flag == 1) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (arrayList.get(i).getName().equals(thing)) {
+                    return i;
+                }
+            }
+            return -1;
+        } else if (flag == 2) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (arrayList.get(i).getAddress().equals(thing)) {
+                    return i;
+                }
+            }
+            return -1;
+        } else {
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (arrayList.get(i).getBirthday().equals(thing)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+    }
+
+
+    /**
+     * 按年龄查找
+     */
+    public int search(int age) {
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (arrayList.get(i).getAge() == age) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 
     /**
      * 联系人排序：名字排序、年龄排序、生日排序
@@ -228,7 +329,7 @@ public class ContactManager {
     public void showContact() {
         System.out.println("通讯录中的信息如下：");
         System.out.println("姓名\t\t" + "年龄\t\t" + "电话\t\t\t\t\t" + "住址\t\t\t\t" + "生日\t\t\t" + "邮箱");
-        for (Contact contact: arrayList) {
+        for (Contact contact : arrayList) {
             System.out.println(contact);
         }
     }
