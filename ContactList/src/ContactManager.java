@@ -1,0 +1,235 @@
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
+
+@SuppressWarnings({"all"})
+public class ContactManager {
+    Scanner scanner = new Scanner(System.in);
+    //建立集合类型
+    ArrayList<Contact> arrayList = new ArrayList<>();
+    Date date;//日期
+
+    /**
+     * 主菜单功能
+     */
+    public void functionMenu() {
+        int choice = 0;
+        //初始化通讯录
+        initContact();
+
+        do {
+            menu();//显示可用功能菜单
+            System.out.print("请输入你的选择:");
+            choice = scanner.nextInt();
+
+            switch(choice) {
+                case 1:
+                    //显示所有联系人信息
+                    showContact();
+                    break;
+                case 2:
+                    //添加联系人信息
+                    addContact();
+                    break;
+                case 3:
+                    //删除联系人信息
+                    deleteContact();
+                    break;
+                case 4:
+                    //修改联系人信息
+                    modifyContact();
+                    break;
+                case 5:
+                    //查找联系人信息
+                    searchMenu();
+                    break;
+                case 6:
+                    //排序联系人信息
+                    sortMenu();
+                    break;
+                case 7:
+                    //重要联系人信息
+                    importantContact();
+                    break;
+                case 8:
+                    //给联系人发信息
+                    sendMessageContact();
+                    break;
+                case 9:
+                    //联系人生日提醒
+                    remindBirthdayContact();
+                    break;
+                case 0:
+                    System.out.println("退出通讯录~");
+                    scanner.close();
+                    break;
+                default:
+                    System.out.println("你输入的选择有误，请重新选择~");
+            }
+        } while (choice != 0);
+    }
+
+    /**
+     * 初始化通讯录
+     */
+    public void initContact() {
+        arrayList.add(new Contact("小王",18,"123456","北京","8月12日","9613.qq.com"));
+        arrayList.add(new Contact("小明",18,"367545","上海","6月13日","7896686.qq.com"));
+    }
+
+
+    /**
+     * 功能选择菜单
+     */
+    public void menu() {
+        System.out.println("************************************");
+        System.out.println("*********  1.显示联系人信息   *********");
+        System.out.println("*********  2.添加联系人信息   *********");
+        System.out.println("*********  3.删除联系人信息   *********");
+        System.out.println("*********  4.修改联系人信息   *********");
+        System.out.println("*********  5.查找联系人信息   *********");
+        System.out.println("*********  6.排序联系人信息   *********");
+        System.out.println("*********  7.重要联系人信息   *********");
+        System.out.println("*********  8.给联系人发信息   *********");
+        System.out.println("*********  9.联系人生日提醒   *********");
+        System.out.println("*********   0.退出通讯录     *********");
+    }
+
+    /**
+     * 添加联系人
+     */
+    public boolean addContact() {
+        System.out.println("请输入联系人姓名：");
+        String name = scanner.next();
+
+        System.out.println("请输入联系人年龄：");
+        int age = scanner.nextInt();
+
+        System.out.println("请输入联系人电话：");
+        String tele = scanner.next();
+
+        System.out.println("请输入联系人地址：");
+        String address = scanner.next();
+
+        System.out.println("请输入联系人生日：");
+        String birthday = scanner.next();
+
+        System.out.println("请输入联系人邮箱：");
+        String email = scanner.next();
+
+        //使用contact类接收这些信息
+        Contact contact = new Contact(name,age,tele,address,birthday,email);
+        arrayList.add(contact);//添加到集合中
+        System.out.println("添加成功");
+        return true;
+    }
+
+    /**
+     * 删除联系人
+     */
+    public boolean deleteContact() {
+        System.out.println("请输入你想要删除的联系人姓名：");
+        String name = scanner.next();
+        int index = searchName(name);
+        if(index == -1) {
+            System.out.println("没有此联系人~");
+            return false;
+        }
+        arrayList.remove(index);
+        System.out.println("删除成功~");
+        return true;
+    }
+
+    public int searchName(String name) {
+        //获取到和name名字相同的下标
+        for (int i = 0; i < arrayList.size(); i++) {
+            if(arrayList.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;//没有该下标
+    }
+
+    /**
+     * 修改联系人
+     */
+    public boolean modifyContact() {
+        System.out.println("请输入你要修改的联系人姓名：");
+        String name = scanner.next();
+
+        int index = searchName(name);
+        if(index == -1) {
+            System.out.println("没有此联系人~");
+            return false;
+        }
+        System.out.println("请输入你想修改的姓名：");
+        String modifyName = scanner.next();
+        arrayList.get(index).setName(modifyName);
+
+        System.out.println("请输入你想修改的年龄：");
+        int modifyAge = scanner.nextInt();
+        arrayList.get(index).setAge(modifyAge);
+
+        System.out.println("请输入你想修改的电话：");
+        String modifyTele = scanner.next();
+        arrayList.get(index).setTele(modifyTele);
+
+        System.out.println("请输入你想修改的地址：");
+        String modifyAddress = scanner.next();
+        arrayList.get(index).setAddress(modifyAddress);
+
+        System.out.println("请输入你想修改的生日：");
+        String modifyBirthday = scanner.next();
+        arrayList.get(index).setBirthday(modifyBirthday);
+
+        System.out.println("请输入你想修改的邮箱：");
+        String modifyEmail = scanner.next();
+        arrayList.get(index).setEmail(modifyEmail);
+        return true;
+    }
+
+    /**
+     * 查找联系人：名字查找、年龄查找、住址查找、生日查找
+     */
+    public void searchMenu() {
+    }
+
+    /**
+     * 联系人排序：名字排序、年龄排序、生日排序
+     */
+    public void sortMenu() {
+        //return false;
+    }
+
+    /**
+     * 重要联系人设置（置顶）
+     */
+    public boolean importantContact() {
+        return false;
+    }
+
+    /**
+     * 给联系人发送信息
+     */
+    public boolean sendMessageContact() {
+        return false;
+    }
+
+    /**
+     * 联系人生日提醒
+     */
+    public boolean remindBirthdayContact() {
+        return false;
+    }
+
+    /**
+     * 显示所有联系人信息
+     */
+    public void showContact() {
+        System.out.println("通讯录中的信息如下：");
+        System.out.println("姓名\t\t" + "年龄\t\t" + "电话\t\t\t\t\t" + "住址\t\t\t\t" + "生日\t\t\t" + "邮箱");
+        for (Contact contact: arrayList) {
+            System.out.println(contact);
+        }
+    }
+}
