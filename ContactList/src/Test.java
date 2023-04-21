@@ -4,13 +4,13 @@ import java.util.Scanner;
 public class Test {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        //boolean flag = login(scanner);
+        boolean flag = login(scanner);
         new ContactManager().functionMenu();
-//        if (!flag) {
-//            System.out.println("你操作的太频繁了，一会再试试吧~");
-//        } else {
-//            new ContactManager().functionMenu();
-//        }
+        if (!flag) {
+            System.out.println("你操作的太频繁了，一会再试试吧~");
+        } else {
+            new ContactManager().functionMenu();
+        }
     }
 
     public static boolean login(Scanner scanner) {

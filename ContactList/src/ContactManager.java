@@ -1,12 +1,13 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 @SuppressWarnings({"all"})
 public class ContactManager {
     Scanner scanner = new Scanner(System.in);
     //建立集合类型
     ArrayList<Contact> arrayList = new ArrayList<>();
+    //重要联系人
+    ArrayList<Contact> importantContact = new ArrayList<>();
+
     Date date;//日期
 
     /**
@@ -49,15 +50,16 @@ public class ContactManager {
                     break;
                 case 7:
                     //重要联系人信息
-                    importantContact();
+                    importantPeople();
+                    //输出重要联系人列表
+                    System.out.println("重要联系人信息如下：");
+                    for (Contact contact: importantContact) {
+                        System.out.println(contact);
+                    }
                     break;
                 case 8:
                     //给联系人发信息
                     sendMessageContact();
-                    break;
-                case 9:
-                    //联系人生日提醒
-                    remindBirthdayContact();
                     break;
                 case 0:
                     System.out.println("退出通讯录~");
@@ -73,7 +75,7 @@ public class ContactManager {
      * 初始化通讯录
      */
     public void initContact() {
-        arrayList.add(new Contact("小王", 18, "123456", "北京", "8月12日", "9613.qq.com"));
+        arrayList.add(new Contact("小王", 12, "123456", "北京", "8月12日", "9613.qq.com"));
         arrayList.add(new Contact("小明", 18, "367545", "上海", "6月13日", "7896686.qq.com"));
     }
 
@@ -91,7 +93,6 @@ public class ContactManager {
         System.out.println("*********  6.排序联系人信息   *********");
         System.out.println("*********  7.重要联系人信息   *********");
         System.out.println("*********  8.给联系人发信息   *********");
-        System.out.println("*********  9.联系人生日提醒   *********");
         System.out.println("*********   0.退出通讯录     *********");
         System.out.println("************************************");
     }
@@ -296,31 +297,96 @@ public class ContactManager {
 
 
     /**
-     * 联系人排序：名字排序、年龄排序、生日排序
+     * 联系人排序：名字排序、年龄排序、住址排序
      */
     public void sortMenu() {
-        //return false;
+        int opt = 0;
+        do {
+            System.out.println("*******************************");
+            System.out.println("******     1.按名字排序    ******");
+            System.out.println("******     2.按年龄排序    ******");
+            System.out.println("******     3.按住址排序    ******");
+            System.out.println("******     0.退出查找     ******");
+            System.out.println("*******************************");
+
+            System.out.println("请输入你想要按照那种规则进行排序：");
+            opt = scanner.nextInt();
+            int index = -1;//下标
+            int flag = 0;//标记类型
+
+            switch (opt) {
+                case 1:
+                    //按名字排序
+                    Collections.sort(arrayList, new Comparator<Contact>() {
+                        @Override
+                        public int compare(Contact o1, Contact o2) {
+                            return o1.getName().compareTo(o2.getName());
+                        }
+                    });
+                    break;
+                case 2:
+                    //按年龄排序
+                    Collections.sort(arrayList, new Comparator<Contact>() {
+                        @Override
+                        public int compare(Contact o1, Contact o2) {
+                            return o1.getAge() - o2.getAge();
+                        }
+                    });
+                    break;
+                case 3:
+                    //按住址排序
+                    Collections.sort(arrayList, new Comparator<Contact>() {
+                        @Override
+                        public int compare(Contact o1, Contact o2) {
+                            return o1.getAddress().compareTo(o2.getAddress());
+                        }
+                    });
+                    break;
+                case 0:
+                    System.out.println("退出排序~");
+                    return;
+                default:
+                    ;
+            }
+            System.out.println("排序成功~");
+            showContact();//打印排序后的内容
+        } while (opt != 0);
     }
 
     /**
      * 重要联系人设置（置顶）
      */
-    public boolean importantContact() {
-        return false;
+    public boolean importantPeople() {
+        System.out.println("请输入你想要设置的重要联系人姓名：");
+        String name = scanner.next();
+
+        int index = searchName(name);
+        if(index == -1) {
+            System.out.println("无此人信息~请你检查后再添加哦~");
+            return false;
+        }
+        //添加重要联系人
+        importantContact.add(arrayList.get(index));
+        System.out.println("添加成功~");
+        return true;
     }
 
     /**
      * 给联系人发送信息
      */
     public boolean sendMessageContact() {
-        return false;
-    }
+        System.out.println("请你输入你发送信息的联系人姓名：");
+        String name = scanner.next();
+        int index = searchName(name);
 
-    /**
-     * 联系人生日提醒
-     */
-    public boolean remindBirthdayContact() {
-        return false;
+        if(index == -1) {
+            System.out.println("无此联系人~");
+            return false;
+        }
+        System.out.println("请输入你要发送的信息：");
+        String messsage = scanner.next();
+        System.out.println("发送成功~");
+        return true;
     }
 
     /**
@@ -328,9 +394,9 @@ public class ContactManager {
      */
     public void showContact() {
         System.out.println("通讯录中的信息如下：");
-        System.out.println("姓名\t\t" + "年龄\t\t" + "电话\t\t\t\t\t" + "住址\t\t\t\t" + "生日\t\t\t" + "邮箱");
         for (Contact contact : arrayList) {
-            System.out.println(contact);
+            System.out.printf("%-10s %-10d %-10s %-10s %-10s %-10s\n",contact.getName(),contact.getAge(), contact.getTele(),
+                    contact.getAddress(), contact.getBirthday(), contact.getEmail());
         }
     }
 }
