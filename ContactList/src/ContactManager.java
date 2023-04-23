@@ -52,7 +52,7 @@ public class ContactManager {
                     importantPeople();
                     //输出重要联系人列表
                     System.out.println("重要联系人信息如下：");
-                    for (Contact contact: importantContact) {
+                    for (Contact contact : importantContact) {
                         System.out.println(contact);
                     }
                     break;
@@ -244,7 +244,7 @@ public class ContactManager {
             }
 
             //判断查找是否成功
-            if(index == -1) {
+            if (index == -1) {
                 System.out.println("无此人信息,请重新查找~");
             } else {
                 System.out.println(arrayList.get(index));
@@ -320,6 +320,8 @@ public class ContactManager {
                         @Override
                         public int compare(Contact o1, Contact o2) {
                             return o1.getName().compareTo(o2.getName());
+                            //o1:abcd
+                            //o2:bcdf
                         }
                     });
                     break;
@@ -360,7 +362,7 @@ public class ContactManager {
         String name = scanner.next();
 
         int index = searchName(name);
-        if(index == -1) {
+        if (index == -1) {
             System.out.println("无此人信息~请你检查后再添加哦~");
             return false;
         }
@@ -378,7 +380,7 @@ public class ContactManager {
         String name = scanner.next();
         int index = searchName(name);
 
-        if(index == -1) {
+        if (index == -1) {
             System.out.println("无此联系人~");
             return false;
         }
@@ -393,8 +395,9 @@ public class ContactManager {
      */
     public void showContact() {
         System.out.println("通讯录中的信息如下：");
+        System.out.printf("%-10s %-10d %-10s %-10s %-10s %-10s\n", "姓名", "年龄", "电话", "地址", "生日", "邮箱");
         for (Contact contact : arrayList) {
-            System.out.printf("%-10s %-10d %-10s %-10s %-10s %-10s\n",contact.getName(),contact.getAge(), contact.getTele(),
+            System.out.printf("%-10s %-10d %-10s %-10s %-10s %-10s\n", contact.getName(), contact.getAge(), contact.getTele(),
                     contact.getAddress(), contact.getBirthday(), contact.getEmail());
         }
     }

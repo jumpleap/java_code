@@ -74,7 +74,6 @@ public class Contact {
 
     //重写toString方法
     public String toString() {
-        return this.name + "\t\t" + this.age + "\t\t" + this.tele
-                + "\t\t\t\t" + this.address + "\t\t\t\t" + this.birthday + "\t\t" + this.email;
+        return this.name + "\t\t" + this.age + "\t\t" + this.tele + "\t\t\t\t" + this.address + "\t\t\t\t" + this.birthday + "\t\t" + this.email;
     }
 }

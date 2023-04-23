@@ -3,6 +3,8 @@ package casedemo;
 public class Case {
     public static void main(String[] args) {
         //接口不能实例化
+        int[] arr  = {1,2,3,4};
+        //arr = Arrays.copyOf(arr,10);
     }
 }
 

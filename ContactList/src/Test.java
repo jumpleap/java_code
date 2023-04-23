@@ -5,7 +5,6 @@ public class Test {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean flag = login(scanner);
-        new ContactManager().functionMenu();
         if (!flag) {
             System.out.println("你操作的太频繁了，一会再试试吧~");
         } else {
@@ -31,7 +30,7 @@ public class Test {
             if (loginName.equals(userName) && loginPwd.equals(userPwd)) {
                 return true;
             } else {
-                if(i != 3)
+                if (i != 3)
                     System.out.println("密码或用户名错误，你还有" + (3 - i) + "次机会");
                 else
                     break;
