@@ -8,7 +8,6 @@ public class ContactManager {
     //重要联系人
     ArrayList<Contact> importantContact = new ArrayList<>();
 
-    Date date;//日期
 
     /**
      * 主菜单功能

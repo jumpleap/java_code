@@ -7,6 +7,7 @@ public class Test {
         Scanner scanner = new Scanner(System.in);
         Stu stu = new Stu("jack", 10);
         System.out.println(stu);
+        System.out.println(Integer.MAX_VALUE);
 
         System.out.println(add(1, 3));
     }
