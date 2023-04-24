@@ -1,13 +1,16 @@
+package prcatice;
+
 import java.util.*;
 
+
 @SuppressWarnings({"all"})
-public class ContactManager {
+public class ContactManager{
+
     Scanner scanner = new Scanner(System.in);
     //建立集合类型
     ArrayList<Contact> arrayList = new ArrayList<>();
     //重要联系人
     ArrayList<Contact> importantContact = new ArrayList<>();
-
 
     /**
      * 主菜单功能
@@ -74,8 +77,8 @@ public class ContactManager {
      * 初始化通讯录
      */
     public void initContact() {
-        arrayList.add(new Contact("小王", 12, "123456", "北京", "8月12日", "9613.qq.com"));
-        arrayList.add(new Contact("小明", 18, "367545", "上海", "6月13日", "7896686.qq.com"));
+        arrayList.add(new Contact("小王", "12", "123456", "北京", "8月12日", "9613.qq.com"));
+        arrayList.add(new Contact("小明", "18", "367545", "上海", "6月13日", "7896686.qq.com"));
     }
 
 
@@ -104,7 +107,7 @@ public class ContactManager {
         String name = scanner.next();
 
         System.out.println("请输入联系人年龄：");
-        int age = scanner.nextInt();
+        String age = scanner.nextLine();
 
         System.out.println("请输入联系人电话：");
         String tele = scanner.next();
@@ -164,27 +167,27 @@ public class ContactManager {
             return false;
         }
         System.out.println("请输入你想修改的姓名：");
-        String modifyName = scanner.next();
+        String modifyName = scanner.nextLine();
         arrayList.get(index).setName(modifyName);
 
         System.out.println("请输入你想修改的年龄：");
-        int modifyAge = scanner.nextInt();
+        String modifyAge = scanner.nextLine();
         arrayList.get(index).setAge(modifyAge);
 
         System.out.println("请输入你想修改的电话：");
-        String modifyTele = scanner.next();
+        String modifyTele = scanner.nextLine();
         arrayList.get(index).setTele(modifyTele);
 
         System.out.println("请输入你想修改的地址：");
-        String modifyAddress = scanner.next();
+        String modifyAddress = scanner.nextLine();
         arrayList.get(index).setAddress(modifyAddress);
 
         System.out.println("请输入你想修改的生日：");
-        String modifyBirthday = scanner.next();
+        String modifyBirthday = scanner.nextLine();
         arrayList.get(index).setBirthday(modifyBirthday);
 
         System.out.println("请输入你想修改的邮箱：");
-        String modifyEmail = scanner.next();
+        String modifyEmail = scanner.nextLine();
         arrayList.get(index).setEmail(modifyEmail);
         return true;
     }
@@ -287,7 +290,7 @@ public class ContactManager {
      */
     public int search(int age) {
         for (int i = 0; i < arrayList.size(); i++) {
-            if (arrayList.get(i).getAge() == age) {
+            if (arrayList.get(i).getAge().equals(age)) {
                 return i;
             }
         }
@@ -330,7 +333,7 @@ public class ContactManager {
                     Collections.sort(arrayList, new Comparator<Contact>() {
                         @Override
                         public int compare(Contact o1, Contact o2) {
-                            return o1.getAge() - o2.getAge();
+                            return o1.getAge().compareTo(o2.getAge());
                         }
                     });
                     break;

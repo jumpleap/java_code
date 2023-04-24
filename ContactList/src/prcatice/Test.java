@@ -1,3 +1,7 @@
+package prcatice;
+
+import prcatice.ContactManager;
+
 import java.util.Scanner;
 
 @SuppressWarnings({"all"})
