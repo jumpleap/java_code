@@ -73,8 +73,21 @@ public class ContactManager extends JFrame implements ActionListener {
         add(scrollPane, BorderLayout.SOUTH);
 
         setVisible(true);//可视化
+        initTable();//初始化表格
     }
 
+    /**
+     * 初始化表格
+     */
+    private void initTable() {
+        //初始化几个联系人
+        contacts.add(new Contact("小王","13887789089","北京","12.12","16342@qq.com"));
+        contacts.add(new Contact("小红","12343556355","上海","2.12","167761@qq.com"));
+        contacts.add(new Contact("小兰","15343533234","北京","1.1","1575686@qq.com"));
+        contacts.add(new Contact("小明","12557446546","贵州","12.2","897686@qq.com"));
+        contacts.add(new Contact("小绿","12557476868","贵州","1.24","565686@qq.com"));
+        updateTable();
+    }
 
 
     /**
