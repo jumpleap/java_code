@@ -5,8 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public @SuppressWarnings({"all"})
-class ModifyContactDialog extends JDialog implements ActionListener {
+@SuppressWarnings({"all"})
+public class ModifyContactDialog extends JDialog implements ActionListener {
     //组件
     private JLabel nameLabel, phoneLabel, addressLabel, birthdayLabel, emailLabel;
     private JTextField nameField, phoneField, addressField, birthdayField, emailField;

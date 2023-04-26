@@ -5,12 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public @SuppressWarnings({"all"})
+@SuppressWarnings({"all"})
 
 /**
  * 添加联系人类
  */
-class AddContactDialog extends JDialog implements ActionListener {
+public class AddContactDialog extends JDialog implements ActionListener {
     //组件
     private JLabel nameLabel, phoneLabel, addressLabel, birthdayLabel, emailLabel;
     private JTextField nameField, phoneField, addressField, birthdayField, emailField;
