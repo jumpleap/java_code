@@ -1,6 +1,6 @@
 package democase;
 
-public class Test {
+public class Test1 {
     public static void main(String[] args) throws CloneNotSupportedException {
         Person person = new Person(10);
         Person person1 = (Person) person.clone();
