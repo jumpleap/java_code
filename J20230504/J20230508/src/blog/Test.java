@@ -2,107 +2,39 @@ package blog;
 
 public class Test {
     public static void main(String[] args) {
-        String s = null;
-        StringBuffer str = new StringBuffer();
-        str.append(s);
-        System.out.println(str.length());//4
-        System.out.println(str);//null
+        //向上转型的实质：父类的引用指向了子类的对象
+        Animal animal = new Dog();
 
-        StringBuffer str1 = new StringBuffer(s);
-        System.out.println(str1);//NullPointerException
+        //编译类型看左边，运行类型看右边
+        //编译类型不可变，运行类型可变
+        //编译类型：Animal； 运行类型：Dog
+        Animal animal1 = new Dog();
+        System.out.println(animal1.getClass().getSimpleName());//Dog
+        animal1.say();//进行动态绑定，和运行类型进行绑定
 
-        /*
-        //1.append()方法的底层分析
-        private AbstractStringBuilder appendNull() {
-            int c = count;
-            ensureCapacityInternal(c + 4);
-            final char[] value = this.value;
-            value[c++] = 'n';
-            value[c++] = 'u';
-            value[c++] = 'l';
-            value[c++] = 'l';
-            count = c;
-            return this;
-        }
-
-        //2.new StringBuffer(String s)的底层分析
-        public StringBuffer(String str) {
-            //可以看出，这里的长度为null.length()的时候，引发空指针异常
-            super(str.length() + 16);
-            append(str);
-        }
-         */
+        //编译类型：Animal； 运行类型：Cat
+        animal1 = new Cat();
+        System.out.println(animal1.getClass().getSimpleName());//Cat
+        animal1.say();//进行动态绑定
     }
 }
 
-
-class Demo {
-    public static void main(String[] args) {
-        //使用StringBuffer的toString()方法
-        StringBuffer maria = new StringBuffer("maria");
-        String str = maria.toString();
-        System.out.println(str);//maria
-
-        //使用String的构造器
-        String s = new String(maria);
-        System.out.println(s);//maria
-
-        /*
-        //1.StringBuffer的toString()源码分析
-        public synchronized String toString() {
-            //这个缓存数组是不是null
-            if (toStringCache == null) {
-                //进行数组拷贝
-                toStringCache = Arrays.copyOfRange(value, 0, count);
-            }
-            //返回一个String对象
-            return new String(toStringCache, true);
-        }
-
-        //2.String的构造器
-        public String(StringBuffer buffer) {
-            synchronized(buffer) {
-                //将buffer的内容拷贝到value数组中去【value是String的属性】
-                this.value = Arrays.copyOf(buffer.getValue(), buffer.length());
-            }
-        }
-         */
+class Animal {
+    public void say() {
     }
+}
 
-    public static void main1(String[] args) {
-        //使用构造器
-        String str = "jack";
-        StringBuffer stringBuffer = new StringBuffer(str);
-        System.out.println(stringBuffer);//jack
+class Dog extends Animal {
+    //方法重写：在子类中重写父类的方法
+    @Override
+    public void say() {
+        System.out.println("狗在大叫~");
+    }
+}
 
-        //使用append方法
-        StringBuffer s = new StringBuffer();
-        s.append(str);
-        System.out.println(s);//jack
-
-        /*
-        1.StringBuffer的构造器底层源码：
-        public StringBuffer(String str) {
-            super(str.length() + 16);
-            append(str);
-        }
-
-        2.append()方法的底层源码
-        public synchronized StringBuffer append(String str) {
-            toStringCache = null;
-            super.append(str);
-            return this;
-        }
-
-        public AbstractStringBuilder append(String str) {
-            if (str == null)
-                return appendNull();
-            int len = str.length();
-            ensureCapacityInternal(count + len);
-            str.getChars(0, len, value, count);
-            count += len;
-            return this;
-        }
-         */
+class Cat extends Animal {
+    @Override
+    public void say() {
+        System.out.println("小猫喵喵叫~");
     }
 }
