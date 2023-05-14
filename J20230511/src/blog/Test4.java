@@ -1,6 +1,6 @@
 package blog;
 
-public class Test {
+public class Test4 {
     public static void main(String[] args) {
         //接口不能实例化
         //Usb usb = new Usb();
