@@ -146,28 +146,24 @@ public class SingleLinkedList {
 
     //删除所有值为key的节点
     public void removeAllKey(int key) {
-        ListNode cur = head;
-        //第一个结点的删除
-        if (cur.data == key) {
-            remove(key);
+        if(head == null) {
+            return;
+        }
+
+        ListNode cur = head.next;
+        ListNode prev = head;
+
+        while(cur != null) {
+            if(cur.data == key) {
+                prev.next = cur.next;
+            } else {
+                prev = cur;
+            }
             cur = cur.next;
         }
 
-        while (cur != null) {
-            //查找删除值的前一个结点
-            ListNode update = findPrev(key);
-            //如果链表中已经没有值和key相等的情况下
-            if (update == null) {
-                //说明删除完了或没有要删除的元素了
-                break;
-            }
-
-            //获取要删除结点
-            ListNode delNode = update.next;
-
-            //删除当前的key结点
-            update.next = delNode.next;
-            cur = cur.next;//更新cur结点
+        if(head.data == key) {
+            head = head.next;
         }
     }
 
