@@ -29,7 +29,7 @@ public class Test {
         myLinkedList.removeAllKey(44);
         myLinkedList.removeAllKey(12);
         myLinkedList.display();
-        //myLinkedList.clear();
+        myLinkedList.clear();
 
 //        myLinkedList.addIndex(2,1);
 //        myLinkedList.display();

@@ -203,7 +203,16 @@ public class MyLinkedList {
 
     //情况链表
     public void clear() {
-        this.head = null;
-        this.tail = null;
+        //this.head = null;
+        //this.tail = null;
+        ListNode cur = head;
+        while(cur != tail) {
+            ListNode curNext = cur.next;
+            cur.prev = null;
+            cur.next = null;
+            cur = curNext;
+        }
+        head = null;
+        tail = null;
     }
 }
