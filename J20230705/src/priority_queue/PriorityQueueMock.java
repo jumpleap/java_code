@@ -35,7 +35,7 @@ public class PriorityQueueMock {
             //得到了最大值的下标
             if (elem[child] > elem[parent]) {
                 swap(child, parent);//交换父母孩子的值
-                //判断下面的结点
+                //判断孩子结点的下面是否还有其他结点
                 parent = child;
                 child = parent * 2 + 1;
             } else {
