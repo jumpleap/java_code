@@ -8,6 +8,7 @@ public class Sort {
      * 最好情况：数组完全逆序的情况 -> O(n^2)
      * 空间复杂度：O(1) -> 无额外的空间使用
      * 稳定性：稳定
+     *
      * @param array 待排序数组
      */
     public static void insertSort(int array[]) {
@@ -35,6 +36,7 @@ public class Sort {
      * 时间复杂度：O(n^1.3 ~ n^1.5)
      * 空间复杂度：O(1)
      * 稳定性：不稳定
+     *
      * @param array 待排序数组
      */
     public static void shellSort(int[] array) {
@@ -68,6 +70,7 @@ public class Sort {
      * 时间复杂度：O(n^2)
      * 空间复杂度：O(1)
      * 稳定性：不稳定
+     *
      * @param array 待排序数组
      */
     public static void selectSort(int[] array) {
@@ -132,6 +135,7 @@ public class Sort {
      * 时间复杂度：O(n*log(n))
      * 空间复杂度：O(1)
      * 稳定性：不稳定
+     *
      * @param array 待排序数组
      */
     public static void heapSort(int[] array) {
@@ -178,6 +182,7 @@ public class Sort {
      * 冒泡排序
      * 时间复杂度：O(n^2)
      * 空间复杂度：O(1)
+     * 稳定性：稳定
      *
      * @param array 待排序数组
      */
@@ -201,12 +206,13 @@ public class Sort {
     /**
      * 快速排序
      * 时间复杂度：
-     *      最好情况：O(nlogn)
-     *      最坏情况：O(n^2)
+     * 最好情况：O(nlogn)
+     * 最坏情况：O(n^2)
      * 空间复杂度：
-     *      最好情况：O(logn)
-     *      最坏情况：O(n)
+     * 最好情况：O(logn)
+     * 最坏情况：O(n)
      * 稳定性：不稳定
+     *
      * @param array 待排序数组
      */
     public static void quickSort(int[] array) {
@@ -245,4 +251,120 @@ public class Sort {
         swap(array, left, i);
         return left;//返回中值
     }
+
+
+    /**
+     * 归并排序
+     * 时间复杂度：O(nlonN)
+     * 空间复杂度：O(n)
+     * 稳定性：稳定
+     */
+    public static void mergeSort(int[] array) {
+        mergeSortFunc(array, 0, array.length - 1);
+    }
+
+    private static void mergeSortFunc(int[] array, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+
+        int mid = left + (right - left) / 2;
+        //分治排序
+        mergeSortFunc(array, left, mid);
+        mergeSortFunc(array, mid + 1, right);
+        merge(array, left, right, mid);//合并排序
+    }
+
+    private static void merge(int[] array, int left, int right, int mid) {
+        int s1 = left;
+        int s2 = mid + 1;
+        int[] tmpArr = new int[right - left + 1];
+        int k = 0;
+
+        //合并数组,保持有序
+        while (s1 <= mid && s2 <= right) {
+            if (array[s2] <= array[s1]) {
+                tmpArr[k++] = array[s2++];
+            } else {
+                tmpArr[k++] = array[s1++];
+            }
+        }
+
+        while (s1 <= mid) {
+            tmpArr[k++] = array[s1++];
+        }
+        while (s2 <= right) {
+            tmpArr[k++] = array[s2++];
+        }
+
+        //复制到tmpArr数组中
+        for (int i = 0; i < tmpArr.length; i++) {
+            array[i + left] = tmpArr[i];
+        }
+    }
+
+
+    /**
+     * 归并排序的非递归
+     */
+    public static void mergeSortNor(int[] array) {
+        int gap = 1;
+        while (gap < array.length) {
+            //从1 、 2 、 4、 8...开始合并，一直到最后完全合并
+            for (int i = 0; i < array.length; i += 2 * gap) {
+                int left = i;
+                int mid = left + gap - 1;
+                int right = mid + gap;
+
+                if (mid >= array.length) {
+                    mid = array.length - 1;
+                }
+                if (right >= array.length) {
+                    right = array.length - 1;
+                }
+                merge(array, left, right, mid);
+            }
+            gap *= 2;
+        }
+    }
+
+
+    /**
+     * 计数排序
+     * 时间复杂度：
+     * 空间复杂度：
+     */
+    public static void countSort(int[] array) {
+        int minVal = array[0];
+        int maxVal = array[0];
+
+        //求当前数组的最大值和最小值
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > maxVal) {
+                maxVal = array[i];
+            }
+            if (array[i] < minVal) {
+                minVal = array[i];
+            }
+        }
+
+        //根据最大值和最小值得到数组的大小
+        int[] count = new int[maxVal - minVal + 1];
+
+        //遍历原来的数组，开始计数
+        for (int i = 0; i < array.length; i++) {
+            count[array[i] - minVal]++;
+        }
+
+        //遍历计数count把当前元素写回array
+        int index = 0;
+        for (int i = 0; i < count.length; i++) {
+            //多个数的情况
+            while (count[i] > 0) {
+                array[index++] = i + minVal;
+                count[i]--;
+            }
+        }
+    }
+
 }

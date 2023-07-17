@@ -161,15 +161,15 @@ public class QuickSort {
         int left = start;
         int right = end + 1;
 
-        while(right <= end) {
+        while (right <= end) {
             //找比基准大的值且左右指针的值不相同
-            if(array[right] < array[start] && array[++left] != array[right]) {
-                swap(array,left,right);
+            if (array[right] < array[start] && array[++left] != array[right]) {
+                swap(array, left, right);
             }
             right++;
         }
         //交换基准值
-        swap(array,start,left);
+        swap(array, start, left);
         return left;
     }
 
@@ -180,34 +180,34 @@ public class QuickSort {
         Stack<Integer> stack = new Stack<>();
         int left = 0;
         int right = array.length - 1;
-        int div = partition(array,left,right);//基准
+        int div = partition(array, left, right);//基准
 
         //说明左边最起码有两个结点
-        if(div - 1 > left) {
+        if (div - 1 > left) {
             stack.push(left);
-            stack.push(div-1);
+            stack.push(div - 1);
         }
         //说明右边最起码有两个结点
-        if(div + 1 < right) {
-            stack.push(div+1);
+        if (div + 1 < right) {
+            stack.push(div + 1);
             stack.push(right);
         }
 
-        while(!stack.isEmpty()) {
+        while (!stack.isEmpty()) {
             //分区间排序
             right = stack.pop();
             left = stack.pop();
 
             //找新的基准
-            div = partition(array,left,right);
+            div = partition(array, left, right);
 
             //再判断左右两边是否有两个及以上的结点
-            if(div - 1 > left) {
+            if (div - 1 > left) {
                 stack.push(left);
-                stack.push(div-1);
+                stack.push(div - 1);
             }
-            if(div + 1 < right) {
-                stack.push(div+1);
+            if (div + 1 < right) {
+                stack.push(div + 1);
                 stack.push(right);
             }
         }

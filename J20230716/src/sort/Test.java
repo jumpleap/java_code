@@ -5,13 +5,19 @@ import java.util.Random;
 
 public class Test {
     public static void main(String[] args) {
-        int[] array = {3,1,2,12,4,15,657,152,13};
+        int[] arr = {1, 3, 4, 3, 5, 2, 8, 2, 2, 1, 6, 3, 6, 6, 7, 8, 3, 1};
+        Sort.countSort(arr);
+        System.out.println(Arrays.toString(arr));
+        int[] array = {3, 1, 2, 12, 4, 15, 657, 152, 13};
         QuickSort.quickSortNor(array);
         System.out.println(Arrays.toString(array));
+        int[] array1 = {3, 1, 2, 12, 4, 15, 657, 152, 13};
+        Sort.mergeSort(array1);
+        System.out.println(Arrays.toString(array1));
     }
 
     public static void main1(String[] args) {
-        int[] array = {3,1,2,12,4,15,657,152,13};
+        int[] array = {3, 1, 2, 12, 4, 15, 657, 152, 13};
         //Sort.insertSort(array);
         //Sort.shellSort(array);
         //Sort.shellSort(array);
