@@ -6,6 +6,12 @@ import java.util.Random;
 public class Test {
     public static void main(String[] args) {
         int[] array = {3,1,2,12,4,15,657,152,13};
+        QuickSort.quickSortNor(array);
+        System.out.println(Arrays.toString(array));
+    }
+
+    public static void main1(String[] args) {
+        int[] array = {3,1,2,12,4,15,657,152,13};
         //Sort.insertSort(array);
         //Sort.shellSort(array);
         //Sort.shellSort(array);
