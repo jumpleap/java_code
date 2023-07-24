@@ -7,4 +7,5 @@ public class ListNode {
     public ListNode(int val) {
         this.val = val;
     }
+
 }

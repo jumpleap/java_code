@@ -65,6 +65,6 @@ public class HashBuck2<K, V> {
                 set.remove(nums[i]);
             }
         }
-        return set.remove();
+        return -1;
     }
 }
