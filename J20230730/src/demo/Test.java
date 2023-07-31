@@ -33,6 +33,6 @@ public class Test {
      */
     public static void rightMove(int num, int rightNum) {
         System.out.println(num >> rightNum);//算术右移
-        System.out.println(num >> rightNum);//逻辑右移
+        System.out.println(num >>> rightNum);//逻辑右移
     }
 }
