@@ -1,6 +1,6 @@
 package leetcode;
 
-class Solution {
+class Solution3 {
     /**
      * 思路分析：二分查找 -> 条件：mid * mid <= x；
      * 若条件成立，往右区间找并记录当前的mid值:left = mid +1;
