@@ -19,7 +19,7 @@ package leetcode;
  *     }
  * }
  */
-public class Solution {
+public class Solution1 {
     /**
      * 思路分析：求链表的长度，让长度长的链表走两者的差值步，最后两个一起走，若是有相交节点，则返回相交节点，反之返回null
      * 时间复杂度：O(n)
