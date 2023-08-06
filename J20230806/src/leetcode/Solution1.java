@@ -11,7 +11,7 @@ import java.util.Stack;
  * ListNode(int x) { val = x; }
  * }
  */
-class Solution {
+class Solution1 {
     /**
      * 法一：栈 -> 把元素入栈后，使用数组接收栈弹出的元素
      * 时间复杂度：O(n)
