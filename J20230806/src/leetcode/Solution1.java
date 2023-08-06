@@ -11,6 +11,9 @@ import java.util.Stack;
  * ListNode(int x) { val = x; }
  * }
  */
+/*
+输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
+ */
 class Solution1 {
     /**
      * 法一：栈 -> 把元素入栈后，使用数组接收栈弹出的元素
