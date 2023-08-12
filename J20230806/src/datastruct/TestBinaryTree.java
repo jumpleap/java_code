@@ -36,5 +36,7 @@ public class TestBinaryTree {
         //查找节点
         System.out.println(binaryTree.find(root, 8));
 
+        binaryTree.levelOrder(root);
+        System.out.println(binaryTree.isCompleteTree(root));
     }
 }

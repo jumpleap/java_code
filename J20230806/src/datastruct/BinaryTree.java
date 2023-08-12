@@ -1,5 +1,8 @@
 package datastruct;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree {
     static class TreeNode {
         private int val;
@@ -166,7 +169,7 @@ public class BinaryTree {
     /**
      * 检测值为value的元素是否存在
      * @param root 根节点
-     * @param val 查找的值
+     * @param val  查找的值
      * @return 返回true/false
      */
     public boolean find(TreeNode root, int val) {
@@ -184,5 +187,62 @@ public class BinaryTree {
         if (rightValue) return true;
         //都没有的情况
         return false;
+    }
+
+    /**
+     * 层序遍历 -- 使用队列来进行实现
+     * @param root 根节点
+     */
+    public void levelOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            System.out.print(cur.val + " ");
+
+            if (cur.left != null) {
+                queue.offer(cur.left);
+            }
+            if (cur.right != null) {
+                queue.offer(cur.right);
+            }
+        }
+    }
+
+
+    /**
+     * 判断一棵树是不是完全二叉树
+     * @param root 根节点
+     * @return 返回true/false
+     */
+    public boolean isCompleteTree(TreeNode root) {
+        if (root == null) return true;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            if (cur != null) {
+                //不是空则入队
+                queue.offer(cur.left);
+                queue.offer(cur.right);
+            } else {
+                //遇到空则跳出循环
+                break;
+            }
+        }
+
+        //若队列中有不为空的值，则说明不是完全二叉树
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            if (cur != null) {
+                return false;
+            }
+        }
+        return true;
     }
 }
