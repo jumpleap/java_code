@@ -1,5 +1,8 @@
 package system_code;
 
+/**
+ * 线程的基本操作 -- 线程的状态获取
+ */
 public class Demo13 {
     public static void main(String[] args) throws InterruptedException {
         Thread thread = new Thread(() -> {
