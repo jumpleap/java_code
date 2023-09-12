@@ -147,6 +147,7 @@ public class Demo3 {
             }
             cur++;
         }
+        return prev;
     }
 
     private static void swap(int[] array, int left, int right) {
