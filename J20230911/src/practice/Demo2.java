@@ -53,7 +53,7 @@ public class Demo2 {
         System.out.println();
     }
 
-    public int[] fibonacci(int n) {
+    public long[] fibonacci(int n) {
         long[] fibArray = new long[n + 1];
         fibArray[0] = 0;
         fibArray[1] = 1;
