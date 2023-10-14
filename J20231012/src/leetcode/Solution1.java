@@ -42,5 +42,4 @@ class Solution1 {
         int endWordLen = str.lastIndexOf(' ');//计算最后一个空格的位置
         return len - endWordLen;
     }
-
 }
