@@ -13,7 +13,6 @@ class Solution {
      * 2) 左右指针的值那个小, 则那个指针移动
      * 时间复杂度: O(n)
      * 空间复杂度: O(1)
-     *
      * @param height 给定数组
      * @return 返回最大面积
      */
