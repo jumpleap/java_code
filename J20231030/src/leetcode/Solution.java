@@ -10,44 +10,33 @@ package leetcode;
  * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution1 {
+class Solution {
     /**
-     * 思路分析: 双指针: 定义一个pre指针和一个cur指针
-     * 1) pre指针用于遍历链表, 查找链表和val相同的节点
-     * 2) pre指针用于删除cur查找的和val相同的节点
-     * 3) cur指向和val相同的节点时, 让pre.的下一个指向cur的下一个(不是pre改变了, 是它的下一个指向改变),cur后移;
-     *    cur指向和val不相等的节点时, 直接让pre指向cur, cur后移
+     * 思路分析: 遍历+头插: 使用cur指针进行边遍历边头插
+     * 1) 让cur指针指向head的下一个节点, 遍历cur;
+     * 2) 使用curNext指针指向cur的下一个节点, 即记录cur的下一节点的位置
+     * 3) 进行头插, 把cur的下一个指向head, 让head又指向cur
+     * 4) cur重新指向curNext, 即保存了cur的下一个节点的指针
      * 时间复杂度: O(n)
      * 空间复杂度: O(1)
      * @param head 给定头节点
-     * @param val val值
-     * @return 新链表
+     * @return 返回新链表
      */
-    public ListNode removeElements(ListNode head, int val) {
+    public ListNode reverseList(ListNode head) {
         //判空
-        if (head == null) return null;
+        if (head == null) return head;
 
-        //用于遍历链表找和val相同的节点
         ListNode cur = head.next;
-        //用于删除cur中找到和val相同节点
-        ListNode pre = head;
-
-        //遍历链表
+        //防止形成环
+        head.next = null;
         while (cur != null) {
-            //值相等
-            if (cur.val == val) {
-                //让pre的下一个指向cur的下一个
-                pre.next = cur.next;
-            } else {
-                //不相等则让pre指到cur的位置
-                pre = cur;
-            }
-            cur = cur.next;
-        }
-
-        //判断头节点
-        if (head.val == val) {
-            head = head.next;
+            //记录cur的下一个节点
+            ListNode curNext = cur.next;
+            //头插
+            cur.next = head;
+            head = cur;
+            //获取cur的下一个节点
+            cur = curNext;
         }
         return head;
     }
