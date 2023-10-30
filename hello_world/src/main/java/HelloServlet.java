@@ -9,7 +9,8 @@ import java.io.IOException;
 public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("hello world");
-        resp.getWriter().write("hello world");
+        resp.setContentType("text/html; charset=utf8");
+        System.out.println("你好 java");
+        resp.getWriter().write("你好 java");
     }
 }
