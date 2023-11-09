@@ -44,7 +44,7 @@ public class TcpServer {
 
     // 通过这个方法, 来处理当前的连接.
     public void processConnection(Socket clientSocket) {
-        // 进入方法, 先打印一个日志, 表示当前有客户端连上了.
+        // 进入方法,  先打印一个日志, 表示当前有客户端连上了.
         System.out.printf("[%s:%d] 客户端上线!\n", clientSocket.getInetAddress(), clientSocket.getPort());
         // 接下来进行数据的交互.
         try (InputStream inputStream = clientSocket.getInputStream();
