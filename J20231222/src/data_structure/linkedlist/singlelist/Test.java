@@ -8,6 +8,7 @@ public class Test {
         list.insertHead(3);
         list.insertHead(2);
         list.insertHead(1);
+        list.insertHead(8);
         list.display();
 
         list.insertTail(5);
