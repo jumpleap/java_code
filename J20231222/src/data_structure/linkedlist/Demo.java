@@ -8,9 +8,9 @@ public class Demo {
         // 构造一个空的LinkedList
         List<String> list1 = new LinkedList<>();
         // List<String> list2 = new java.util.ArrayList<>();
-        list1.add("JavaSE");
-        list1.add("JavaWeb");
-        list1.add("JavaEE");
+        // list1.add("JavaSE");
+        // list1.add("JavaWeb");
+        // list1.add("JavaEE");
 
         for (String s : list1) {
             System.out.println(s);
