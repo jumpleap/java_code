@@ -9,4 +9,9 @@ public class HelloController {
     public String hello() {
         return "hello";
     }
+
+    @RequestMapping("/sayHi")
+    public String hi() {
+        return "Hi, Spring!";
+    }
 }
