@@ -1,9 +1,6 @@
 package com.lin.springmvc;
 
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -53,5 +50,18 @@ public class CookieAndSession {
     @RequestMapping("/getSession3")
     public String getSession(@SessionAttribute(value = "userName", required = false) String userName) {
         return "登录用户: " + userName;
+    }
+
+    // 获取header
+    @RequestMapping("/getHeader")
+    public String getHeader(HttpServletRequest request) {
+        String header = request.getHeader("User-Agent");
+        return "userAgent:" + header;
+    }
+
+    // 第二种方式
+    @RequestMapping("/getHeader2")
+    public String getHeader2(@RequestHeader("User-Agent") String userAgent) {
+        return "userAgent:" + userAgent;
     }
 }
