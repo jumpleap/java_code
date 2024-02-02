@@ -39,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                
+
             </tbody>
         </table>
 
@@ -47,36 +47,37 @@
             <ul id="pageContainer" class="pagination justify-content-center"></ul>
         </div>
         <script>
+
             getBookList();
             function getBookList() {
                 $.ajax({
                     type: "get",
                     url: "/book/getList",
-                    success: function (result) {
-                    console.log(result);
-                        if (result != null) {
+                    success: function(books) {
                         var finalHtml = "";
-                        for (var book of result) {
+                        for (var book of books) {
+                            // 拼接Html
                             finalHtml += '<tr>';
-                            finalHtml += '<td><input type="checkbox" name="selectBook"
-                            finalHtml += '<td>' + book.id + '</td>';
-                            finalHtml += '<td>' + book.bookName + '</td>';
-                            finalHtml += '<td>' + book.author + '</td>';
-                            finalHtml += '<td>' + book.count + '</td>';
-                            finalHtml += '<td>' + book.price + '</td>';
-                            finalHtml += '<td>' + book.publish + '</td>';
-                            finalHtml += '<td>' + book.statusCN + '</td>';
-                            finalHtml += '<td><div class="op">';
-                            finalHtml += '<a href="book_update.html?bookId=' + book.id +
-                            finalHtml += '<a href="javascript:void(0)" onclick="deleteBo
-                            finalHtml += '</div></td>';
-                            finalHtml += "</tr>";
+                            finalHtml += '<td><input type="checkbox" name="selectBook" value="'+book.id+'" id="selectBook" class="book-select"></td>';
+                            finalHtml += '<td>'+book.id+'</td>';
+                            finalHtml += '<td>'+book.bookName+'</td>';
+                            finalHtml += '<td>'+book.author+'</td>';
+                            finalHtml += '<td>'+book.count+'</td>';
+                            finalHtml += '<td>'+book.price+'</td>';
+                            finalHtml += '<td>'+book.publish+'</td>';
+                            finalHtml += '<td>'+book.statusCN+'</td>';
+                            finalHtml += '<td>';
+                            finalHtml += '<div class="op">';
+                            finalHtml += '<a href="book_update.html?bookId='+book.id+'">修改</a>';
+                            finalHtml += '<a href="javascript:void(0)" onclick="deleteBook('+book.id+')">删除</a>';
+                            finalHtml += '</div>';
+                            finalHtml += '</td>';
+                            finalHtml += '</tr>';
                         }
                         $("tbody").html(finalHtml);
                     }
-                }
-            });
-        }
+                });
+            }
     
             //翻页信息
             $("#pageContainer").jqPaginator({

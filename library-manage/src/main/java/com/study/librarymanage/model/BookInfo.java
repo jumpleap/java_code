@@ -1,4 +1,4 @@
-package com.study.librarymanage;
+package com.study.librarymanage.model;
 
 import lombok.Data;
 
@@ -22,8 +22,4 @@ public class BookInfo {
     // 状态
     private Integer status;
     private String statusCN;
-    // 创建时间
-    private Date createTime;
-    // 更新时间
-    private Date updateTime;
 }

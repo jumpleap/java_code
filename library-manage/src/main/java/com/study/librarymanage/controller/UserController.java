@@ -1,4 +1,4 @@
-package com.study.librarymanage;
+package com.study.librarymanage.controller;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,16 +11,17 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @RequestMapping("/login")
     public boolean login(String username, String password, HttpSession session) {
-        // 判断username和password是否为null或为空串
+        // 有null或空串则返回false
         if (!StringUtils.hasLength(username) || !StringUtils.hasLength(password)) {
             return false;
         }
-        // 校验账号和密码
+        // 检验账号密码是否正确
         if ("admin".equals(username) && "admin".equals(password)) {
-            // 创建会话
+            // 账号和密码正确, 建立会话
             session.setAttribute("username", username);
             return true;
         }
+        // 账号和密码有一个不正确
         return false;
     }
 }
