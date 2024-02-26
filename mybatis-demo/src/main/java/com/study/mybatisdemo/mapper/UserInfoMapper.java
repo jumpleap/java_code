@@ -1,10 +1,7 @@
 package com.study.mybatisdemo.mapper;
 
 import com.study.mybatisdemo.controller.UserInfo;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -30,4 +27,10 @@ public interface UserInfoMapper {
     @Insert("insert into userinfo (username, `password`, age, gender, phone) " +
             "values(#{username}, #{password}, #{age}, #{gender}, #{phone})")
     Integer insert(UserInfo userInfo);
+
+
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    @Insert("insert into userinfo (username, age, gender, phone) " +
+            "values (#{username}, #{password}, #{age}, #{gender}, #{phone})")
+    Integer insert2(UserInfo userInfo);
 }
