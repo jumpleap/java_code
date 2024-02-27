@@ -1,4 +1,4 @@
-package com.study.mybatisdemo.controller;
+package com.study.mybatisdemo.model;
 
 import lombok.Data;
 
