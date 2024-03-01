@@ -102,6 +102,7 @@ public class BinaryTree {
      * 获取二叉树的节点个数(递归)
      */
     public int size(TreeNode root) {
+        // 判空
         if (root == null) {
             return 0;
         }
@@ -114,6 +115,7 @@ public class BinaryTree {
     public int leafSize = 0;
 
     public void getLeafNodeSize2(TreeNode root) {
+        // 判空
         if (root == null) return;
         // 判断叶子节点
         if (root.left == null && root.right == null) {
@@ -128,6 +130,7 @@ public class BinaryTree {
      * 获取叶子节点个数(子问题解决)
      */
     public int getLeafNodeSize(TreeNode root) {
+        // 判空
         if (root == null) return 0;
         // 判断叶子节点
         if (root.left == null && root.right == null) {
@@ -140,12 +143,13 @@ public class BinaryTree {
      * 获取第k层节点的个数
      */
     public int getKLevelNodeCount(TreeNode root, int k) {
+        // 判空
         if (root == null) return 0;
         // 当k到达目标层, 就返回值
         if (k == 1) {
             return 1;
         }
-        // 进行左右子数的递归
+        // 进行左右子树的递归
         return getKLevelNodeCount(root.left, k - 1) +
                 getKLevelNodeCount(root.right, k - 1);
     }
@@ -154,9 +158,13 @@ public class BinaryTree {
      * 获取二叉树的高度
      */
     public int getHeight(TreeNode root) {
+        // 判空
         if (root == null) return 0;
+        // 左子树的高度
         int leftHeight = getHeight(root.left);
+        // 右子树的高度
         int rightHeight = getHeight(root.right);
+        // 判断那边高, 然后返回
         return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
     }
 
@@ -184,6 +192,7 @@ public class BinaryTree {
      * 层序遍历
      */
     public void levelOrder(TreeNode root) {
+        // 判空
         if (root == null) return;
 
         // 创建队列
@@ -211,8 +220,9 @@ public class BinaryTree {
      * 判断一棵树是不是完全二叉树
      */
     public boolean isCompleteTree(TreeNode root) {
+        // 判空
         if (root == null) return true;
-
+        // 创建队列
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
 
