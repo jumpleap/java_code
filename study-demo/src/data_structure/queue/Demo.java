@@ -18,6 +18,7 @@ public class Demo {
         queue.offer(2);
         queue.offer(3);
         queue.offer(4);
+        queue.offer(5);
         System.out.println(queue);
 
         // 出队
