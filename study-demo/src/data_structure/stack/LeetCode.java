@@ -152,4 +152,29 @@ public class LeetCode {
     private boolean isNumber(String s) {
         return !("+".equals(s) || "-".equals(s) || "*".equals(s) || "/".equals(s));
     }
+
+    /**
+     * 判断栈序列
+     * 时间复杂度: O(N)
+     * 空间复杂度: O(N)
+     */
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+        // 创建栈
+        Stack<Integer> stack = new Stack<>();
+        // 数组长度不相同
+        if (pushed.length != popped.length) return false;
+
+        for (int i = 0, count = 0; i < pushed.length; i++) {
+            // 入栈
+            stack.push(pushed[i]);
+
+            // 栈空跳出且判断是否匹配
+            while (!stack.isEmpty() && popped[count] == stack.peek()) {
+                stack.pop();
+                count++;
+            }
+        }
+        // 栈空: 说明入栈和出栈相匹配
+        return stack.isEmpty();
+    }
 }
