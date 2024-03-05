@@ -92,12 +92,14 @@ public class MyQueue {
     /**
      * 打印
      */
-    public void display() {
+    public String toString() {
         ListNode cur = head;
+        StringBuilder s = new StringBuilder();
+
         while (cur != null) {
-            System.out.print(cur.val + " ");
+            s.append(cur.val).append(" ");
             cur = cur.next;
         }
-        System.out.println();
+        return s.toString();
     }
 }
