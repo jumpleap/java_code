@@ -31,6 +31,7 @@ public class Sort {
      * 空间复杂度: O(1)
      * 稳定性: 稳定
      * 注: 一个本身就是稳定的排序, 是可以实现为不稳定的排序的; 一个本身不稳定的排序, 是不可能实现稳定的排序的
+     *
      * @param array
      */
     public void insertSort(int[] array) {
@@ -60,6 +61,7 @@ public class Sort {
      * 时间复杂度: O(N^1.3 ~ N^1.5)
      * 空间复杂度: O(1)
      * 稳定性: 不稳定
+     *
      * @param array
      */
     public void shellSort(int[] array) {
@@ -104,6 +106,7 @@ public class Sort {
      * 时间复杂度: O(N^2)
      * 空间复杂度: O(1)
      * 稳定性: 不稳定
+     *
      * @param array
      */
     public void selectSort(int[] array) {
@@ -129,5 +132,35 @@ public class Sort {
         int tmp = array[i];
         array[i] = array[j];
         array[j] = tmp;
+    }
+
+
+    /**
+     * 冒泡排序
+     * 思想: 通过对待排序序列从前向后依次对相邻两个元素进行两两比较, 若发现逆序则交换, 大的值往后面移.
+     * 时间复杂度: O(N^2) 加了优化最后O(N)
+     * 空间复杂度: O(1)
+     * 稳定性: 稳定
+     *
+     * @param array
+     */
+    public void bubbleSort(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            // 优化标志
+            boolean flag = false;
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                // 进行两两比较
+                if (array[j] > array[j + 1]) {
+                    // 交换数据
+                    swap(array, j, j + 1);
+                    // 进行交换则说明这一趟不是有序的
+                    flag = true;
+                }
+            }
+            // 有序了, 跳出循环
+            if (!flag) {
+                break;
+            }
+        }
     }
 }

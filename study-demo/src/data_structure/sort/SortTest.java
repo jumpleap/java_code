@@ -10,6 +10,18 @@ public class SortTest {
         test();
         test1();
         test2();
+        test3();
+    }
+
+    /**
+     * 选择排序测试
+     */
+    private static void test3() {
+        // 获取数组
+        int[] array = getArray();
+        // 选择排序
+        sort.bubbleSort(array);
+        System.out.println(Arrays.toString(array));
     }
 
     /**

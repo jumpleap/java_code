@@ -7,11 +7,11 @@ public class MyQueueTest {
         queue.offer(2);
         queue.offer(3);
         queue.offer(4);
-        queue.display();
+        System.out.println(queue);
 
         System.out.println(queue.poll());
         System.out.println(queue.poll());
-        queue.display();
+        System.out.println(queue);
 
         System.out.println(queue.isEmpty());
         System.out.println(queue.peek());
