@@ -19,7 +19,7 @@ public class Demo1 {
         D: interface B{ void print();}
         解释: interface声明的方法无需方法体, 只要有方法声明即可, 但是static方法和default方法
 
-        3、关键字super的作用是（ C ）
+        3、关键字super的作用是（ D ）
         A: 用来访问父类被隐藏的非私有成员变量
         B: 用来调用父类中被重写的方法
         C: 用来调用父类的构造函数
