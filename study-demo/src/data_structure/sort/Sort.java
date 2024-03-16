@@ -163,4 +163,47 @@ public class Sort {
             }
         }
     }
+
+    /**
+     * 堆排序
+     *
+     * @param array
+     */
+    public void heapSort(int[] array) {
+        // 创建大根堆
+        createBigHeap(array);
+        int end = array.length - 1;
+        while (end > 0) {
+            swap(array, 0, end);
+            siftDown(array, 0, end);
+            end--;
+        }
+    }
+
+    // 创建大根堆
+    private void createBigHeap(int[] array) {
+        int len = array.length;
+
+        for (int parent = (len - 1 - 1) / 2; parent >= 0; parent--) {
+            siftDown(array, parent, len);
+        }
+    }
+
+    // 向下调整
+    private void siftDown(int[] array, int parent, int end) {
+        int child = parent * 2 + 1;
+        while (child < end) {
+            if (child + 1 < end && array[child] < array[child + 1]) {
+                child++;
+            }
+
+            if (array[parent] < array[child]) {
+                swap(array, parent, child);
+                parent = child;
+                child = parent * 2 + 1;
+            } else {
+                break;
+            }
+        }
+    }
 }
