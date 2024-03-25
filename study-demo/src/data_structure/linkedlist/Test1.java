@@ -30,12 +30,12 @@ public class Test1 {
 
 
         MyLinkedList list = new MyLinkedList();
+        list.addLast(2);
         list.addLast(1);
         list.addLast(2);
         list.addLast(1);
         list.addLast(1);
-        list.addLast(1);
-        list.addLast(1);
+        list.addLast(2);
         list.display();
         list.removeAllKey(1);
         list.display();
