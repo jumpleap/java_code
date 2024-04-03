@@ -1,5 +1,7 @@
 package practice;
 
+import util.ListNode;
+
 public class Demo7 {
     // 选择题
     /*
