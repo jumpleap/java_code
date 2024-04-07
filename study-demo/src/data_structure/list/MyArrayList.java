@@ -39,7 +39,9 @@ public class MyArrayList {
      * 数组判满
      */
     private void isFull() {
+        // 数组满了
         if (size == array.length) {
+            // 数组扩容
             array = Arrays.copyOf(array, array.length * 2);
         }
     }
