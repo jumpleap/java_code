@@ -127,13 +127,22 @@ public class MyLinkedList {
                 if (cur == head) {
                     head = head.next;
                     // 只有一个节点的情况
-                    if (head != null) {
+                    if (head == null) {
+                        // 尾结点置空
+                        tail = null;
+                        return;
+                    } else {
+                        // 多个节点的情况
                         head.prev = null;
                     }
                 } else if (cur == tail) {
+                    // 尾结点的情况
+                    // tail指向前一个节点
                     tail = tail.prev;
+                    // tail的后一个节点的指向置空
                     tail.next = null;
                 } else {
+                    // 中间情况
                     // 把要删除节点的前一个节点的后继更改
                     cur.prev.next = cur.next;
                     // 把要删除节点的后一个节点的前驱更改
@@ -159,17 +168,23 @@ public class MyLinkedList {
                 // 头节点的情况
                 if (cur == head) {
                     head = head.next;
-
-                    if (head != null) {
-                        head.prev = null;
+                    // 只有一个节点的情况
+                    if (head == null) {
+                        // 尾结点置空
+                        tail = null;
+                        return;
                     } else {
-                        // 只有一个节点的情况
-                        break;
+                        // 多个节点的情况
+                        head.prev = null;
                     }
                 } else if (cur == tail) {
+                    // 尾结点的情况
+                    // tail指向前一个节点
                     tail = tail.prev;
+                    // tail的后一个节点的指向置空
                     tail.next = null;
                 } else {
+                    // 多个节点的情况
                     // 把要删除节点的前一个节点的后继更改
                     cur.prev.next = cur.next;
                     // 把要删除节点的后一个节点的前驱更改
