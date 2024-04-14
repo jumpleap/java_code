@@ -1,7 +1,10 @@
 package data_structure.queue;
 
 import java.util.Stack;
-
+// 栈实现队列
+// 思路: 栈的特点是后进先出, 队列的特点是先进先出;
+// 两个辅助栈s1, s2, s1用来入元素, 把要入队列的元素全部放到该栈中;
+// s2用来出元素,当s2为空时, 把s1中的元素全部放到s2中, 再进行出元素
 public class LeetCode {
     class MyQueue {
         // 创建两个栈
