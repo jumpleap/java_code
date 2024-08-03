@@ -1,21 +1,25 @@
+package tests;
+
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import static java.lang.Thread.sleep;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class Tests extends InitAndEndBrowser{
+public class Tests extends InitAndEndBrowser {
 
     // 登录成功测试
     @Order(1)
     @ParameterizedTest
     @CsvSource({"'bit', '123456'"})
-    void loginSuccess(String username, String password) throws InterruptedException {
+    void loginSuccess(String username, String password) throws InterruptedException, IOException {
         // 打开登录页面
         webDriver.get(MUSIC_LOGIN_ADDR);
 
@@ -32,6 +36,12 @@ public class Tests extends InitAndEndBrowser{
         // 接收弹窗
         Alert alert = webDriver.switchTo().alert();
         alert.accept();
+        sleep(2000);
+
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\login.png"));
 
         // 校验
         // 1.校验是否跳转到音乐列表页
@@ -44,17 +54,23 @@ public class Tests extends InitAndEndBrowser{
         Assertions.assertEquals(expectedTitle, title);
     }
 
+
     // 播放歌曲成功测试
     @Order(2)
     @Test
-    void playMusic() throws InterruptedException {
+    void playMusic() throws InterruptedException, IOException {
         // 打开音乐列表页
         webDriver.get(MUSIC_LIST_ADDR);
-        sleep(20000);
+        sleep(25000);
 
         // 选中播放按钮，点击播放
         webDriver.findElement(By.cssSelector("#info > tr:nth-child(1) > td:nth-child(4) > button")).click();
         sleep(2000);
+
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\action.png"));
 
         // 验证
         // 1.验证当前播放歌曲的名称是否正确
@@ -74,7 +90,7 @@ public class Tests extends InitAndEndBrowser{
     // 收藏歌曲成功测试
     @Order(3)
     @Test
-    void collectionSuccess() throws InterruptedException {
+    void collectionSuccess() throws InterruptedException, IOException {
         // 打开音乐列表页
         webDriver.get(MUSIC_LIST_ADDR);
         sleep(5000);
@@ -85,9 +101,16 @@ public class Tests extends InitAndEndBrowser{
         webDriver.findElement(By.cssSelector("#info > tr:nth-child(1) > td:nth-child(5) > button:nth-child(2)")).click();
         sleep(3000);
 
+
         // 接收弹窗
         Alert alert = webDriver.switchTo().alert();
         alert.accept();
+        sleep(2000);
+
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\collectionSuccess.png"));
 
         // 校验
         // 选中喜欢列表按钮，并点击
@@ -105,7 +128,7 @@ public class Tests extends InitAndEndBrowser{
     // 收藏音乐失败测试
     @Order(4)
     @Test
-    void collectionFail() throws InterruptedException {
+    void collectionFail() throws InterruptedException, IOException {
         // 打开音乐列表页
         webDriver.get(MUSIC_LIST_ADDR);
         sleep(5000);
@@ -119,6 +142,12 @@ public class Tests extends InitAndEndBrowser{
         // 接收弹窗
         Alert alert = webDriver.switchTo().alert();
         alert.accept();
+        sleep(2000);
+
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\collectionFail.png"));
 
         // 校验
         String curUrl = webDriver.getCurrentUrl();
@@ -128,7 +157,7 @@ public class Tests extends InitAndEndBrowser{
     // 取消收藏测试
     @Order(5)
     @Test
-    void cancelCollection() throws InterruptedException {
+    void cancelCollection() throws InterruptedException, IOException {
         // 打开收藏音乐列表
         webDriver.get(MUSIC_COLLECTION_LIST_ADDR);
         sleep(5000);
@@ -142,6 +171,11 @@ public class Tests extends InitAndEndBrowser{
         alert.accept();
         sleep(3000);
 
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\cancelCollection.png"));
+
         // 校验
         // 检验跳转的 URL 是否跳转正确
         String currentUrl = webDriver.getCurrentUrl();
@@ -151,13 +185,19 @@ public class Tests extends InitAndEndBrowser{
     // 测试喜欢列表按钮
     @Order(6)
     @Test
-    void collectionList() throws InterruptedException {
+    void collectionList() throws InterruptedException, IOException {
         // 打开音乐列表页
         webDriver.get(MUSIC_LIST_ADDR);
         sleep(3000);
 
         // 选择喜欢列表按钮，并点击
         webDriver.findElement(By.cssSelector("#body > div.container > div:nth-child(3) > a:nth-child(1)")).click();
+        sleep(2000);
+
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\collectionList.png"));
 
         // 校验
         String curUrl = webDriver.getCurrentUrl();
@@ -167,7 +207,7 @@ public class Tests extends InitAndEndBrowser{
     // 测试添加音乐成功测试
     @Order(7)
     @Test
-    void uploadMusicSuccess() throws InterruptedException {
+    void uploadMusicSuccess() throws InterruptedException, IOException {
         // 打开音乐首页
         webDriver.get(MUSIC_LIST_ADDR);
         sleep(3000);
@@ -175,6 +215,11 @@ public class Tests extends InitAndEndBrowser{
         // 选中添加歌曲按钮，并点击
         webDriver.findElement(By.cssSelector("#body > div.container > div:nth-child(3) > a:nth-child(2)")).click();
         sleep(2000);
+
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\clickUpload.png"));
 
         // 选中文件上传按钮，并上传你要上传的文件
         WebElement uploadDocument = webDriver.findElement(By.cssSelector("body > form > input[type=file]:nth-child(1)"));
@@ -186,9 +231,19 @@ public class Tests extends InitAndEndBrowser{
         webDriver.findElement(By.cssSelector("body > form > label > input[type=text]")).sendKeys("许巍");
         sleep(2000);
 
+        // 截屏
+        File file1 = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file1, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\uploadInfo.png"));
+
         // 选中上传按钮，并点击上传
         webDriver.findElement(By.cssSelector("body > form > input[type=submit]:nth-child(3)")).click();
         sleep(2000);
+
+        // 截屏
+        File file2 = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file2, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\uploadSuccess.png"));
 
         // 校验
         // 1.判断上传后的网址是否跳转
@@ -207,7 +262,7 @@ public class Tests extends InitAndEndBrowser{
     // 添加音乐失败测试
     @Order(8)
     @Test
-    void uploadMusicFail() throws InterruptedException {
+    void uploadMusicFail() throws InterruptedException, IOException {
         // 打开音乐首页
         webDriver.get(MUSIC_LIST_ADDR);
         sleep(3000);
@@ -229,6 +284,11 @@ public class Tests extends InitAndEndBrowser{
         webDriver.findElement(By.cssSelector("body > form > input[type=submit]:nth-child(3)")).click();
         sleep(2000);
 
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\uploadFail.png"));
+
         // 校验
         // 1.判断上传后的网址是否跳转
         String curUrl = webDriver.getCurrentUrl();
@@ -242,7 +302,7 @@ public class Tests extends InitAndEndBrowser{
     // 搜索音乐成功测试
     @Order(9)
     @Test
-    void searchMusicSuccess() throws InterruptedException {
+    void searchMusicSuccess() throws InterruptedException, IOException {
         // 打开音乐列表页
         webDriver.get(MUSIC_LIST_ADDR);
         sleep(3000);
@@ -255,6 +315,11 @@ public class Tests extends InitAndEndBrowser{
         webDriver.findElement(By.cssSelector("#submit1")).click();
         sleep(2000);
 
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\searchSuccess.png"));
+
         // 校验
         // 判断是否存在搜索的内容，存在则说明elements不为空，测试通过
         List<WebElement> elements = webDriver.findElements(By.cssSelector("#info > td"));
@@ -266,7 +331,7 @@ public class Tests extends InitAndEndBrowser{
     // 搜索音乐成功失败
     @Order(10)
     @Test
-    void searchMusicFail() throws InterruptedException {
+    void searchMusicFail() throws InterruptedException, IOException {
         // 打开音乐列表页
         webDriver.get(MUSIC_LIST_ADDR);
         sleep(3000);
@@ -279,6 +344,11 @@ public class Tests extends InitAndEndBrowser{
         webDriver.findElement(By.cssSelector("#submit1")).click();
         sleep(2000);
 
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\searchFail.png"));
+
         // 校验
         // 判断是否存在搜索的内容，不存在则说明elements为空，测试通过
         List<WebElement> elements = webDriver.findElements(By.cssSelector("#info > td"));
@@ -290,7 +360,7 @@ public class Tests extends InitAndEndBrowser{
     // 删除成功测试
     @Order(11)
     @Test
-    void deleteMusic() throws InterruptedException {
+    void deleteMusic() throws InterruptedException, IOException {
         // 打开音乐列表页
         webDriver.get(MUSIC_LIST_ADDR);
         sleep(3000);
@@ -305,6 +375,11 @@ public class Tests extends InitAndEndBrowser{
         Alert alert = webDriver.switchTo().alert();
         alert.accept();
 
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\delete.png"));
+
         // 获取当前的音乐个数
         List<WebElement> lastElements = webDriver.findElements(By.cssSelector("#info > tr"));
 
@@ -315,7 +390,7 @@ public class Tests extends InitAndEndBrowser{
     // 批量删除音乐成功测试
     @Order(12)
     @Test
-    void deleteBatchesMusic() throws InterruptedException {
+    void deleteBatchesMusic() throws InterruptedException, IOException {
         // 打开音乐列表页
         webDriver.get(MUSIC_LIST_ADDR);
         sleep(5000);
@@ -342,6 +417,12 @@ public class Tests extends InitAndEndBrowser{
         // 接收窗口
         Alert alert = webDriver.switchTo().alert();
         alert.accept();
+        sleep(2000);
+
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\someDelete.png"));
 
         // 获取删除之后的音乐数量
         List<WebElement> lastMusicCount = webDriver.findElements(By.cssSelector("#info > tr"));
@@ -354,7 +435,7 @@ public class Tests extends InitAndEndBrowser{
     @Order(13)
     @ParameterizedTest
     @CsvSource({"'bit', '12345'"})
-    void loginFaik(String username, String password) throws InterruptedException {
+    void loginFail(String username, String password) throws InterruptedException, IOException {
         // 打开登录页面
         webDriver.get(MUSIC_LOGIN_ADDR);
         sleep(3000);
@@ -372,6 +453,12 @@ public class Tests extends InitAndEndBrowser{
         // 接收弹窗
         Alert alert = webDriver.switchTo().alert();
         alert.accept();
+
+        // 截屏
+        File file = ((TakesScreenshot) (webDriver)).getScreenshotAs(OutputType.FILE);
+        // 把截屏保存到photo文件中
+        FileUtils.copyFile(file, new File("D:\\Java_Code\\java_code\\music-auto-test\\src\\photo\\loginFail.png"));
+
 
         // 校验
         // 校验是否回到登录页面
